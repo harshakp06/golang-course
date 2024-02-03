@@ -7,8 +7,8 @@ import (
 
 func main() {
 	fmt.Println("Welcome to json Golang")
-	EncodeJson()
-
+	// EncodeJson()
+	DecodeJson()
 }
 
 type course struct {
@@ -34,4 +34,40 @@ func EncodeJson() {
 		panic(err)
 	}
 	fmt.Printf("%s\n", finalJson)
+}
+
+func DecodeJson() {
+	jsonDataFromWeb := []byte(`
+	{
+		"coursename": "ReactJs Bootcamp",
+		"Price": 299,
+		"website": "LearnCodeOnline.in",
+		"tags": [
+				"web-dev","js"]
+	}
+	`)
+
+	var lcoCourse course
+
+	checkValid := json.Valid(jsonDataFromWeb)
+
+	if checkValid {
+		fmt.Println("JSON was valid")
+		json.Unmarshal(jsonDataFromWeb, &lcoCourse)
+		fmt.Printf("%#v\n", lcoCourse)
+	} else {
+		fmt.Println("JSON was not valid")
+	}
+
+	// some cases where you just want to add data to key value
+
+	var myOnlienData map[string]interface{}
+	json.Unmarshal(jsonDataFromWeb, &myOnlienData)
+	fmt.Printf("%#v\n", myOnlienData)
+
+	for k, v := range myOnlienData {
+		fmt.Printf("\nKey is %v and value is %v and Type is: %T\n", k, v, v)
+
+	}
+
 }
