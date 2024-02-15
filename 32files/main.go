@@ -61,7 +61,7 @@ func file4() {
 
 func file2() {
 
-	fileinfo, err := os.Stat("/home/harsha/Desktop/github_repo/golang-course/32files")
+	fileinfo, err := os.Stat("32files")
 
 	if err != nil {
 		fmt.Println(err)
@@ -76,7 +76,7 @@ func file2() {
 }
 
 func file3() {
-	path3 := "/home/harsha/Desktop/github_repo/golang-course/32files/temp.txt"
+	path3 := "temp.txt"
 
 	data, err := os.ReadFile(path3)
 	if err != nil {
